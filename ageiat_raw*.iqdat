@@ -1,0 +1,56 @@
+build:							The specific Inquisit version used (the 'build') that was run
+computer.platform:				the platform the script was run on (win/mac/ios/android)
+date, time: 					date and time script was run 
+
+subject, group, 				with the current subject/groupnumber
+										Note: odd/even groupnumbers balance the order in which 
+										hypothesis-compatible/incompatible blocks are run
+										odd = compatible - incompatible
+										even = incompatible - compatible
+										
+session:						with the current session id
+
+blockcode, blocknum:			the name and number of the current block (built-in Inquisit variable)
+trialcode, trialnum: 			the name and number of the currently recorded trial (built-in Inquisit variable)
+									Note: trialnum is a built-in Inquisit variable; it counts all trials run; 
+									even those that do not store data to the data file such as feedback trials
+									
+conditionOrder:					c-ic: consistent -> inconsistent
+								ic-c: inconsistent -> consistent									
+									
+response:						the response key pressed (e.g. 18=E or 23=I)										
+								Note: script saves the final and -by design- correct response for each trial
+										
+correct:						the accuracy of the initial response
+										0 = initial response was incorrect and needed to be corrected
+										1 = initial response is correct
+										
+latency:						the latency of the final (correct) response in ms; measured from onset of stim
+stimulusnumber:					the number of the current stimulus
+stimulusitem:					the currently presented item
+
+
+Only meaningful for the last row of data in the raw data file (upon completion of IAT):
+
+da:								d-score of the first short blocks
+db:								d-score of the second long blocks
+
+d:								overall d-score (non-weighted mean of the 2 d-scores); main DV
+
+								Suggested Interpretation:
+
+											D-score <= -0.65 => "a strong" preference for hypothesis-NONconforming pairings
+											D-score < -0.35 => "a moderate" preference for hypothesis-NONconforming pairings
+											D-score < -0.15 => "a slight" preference for hypothesis-NONforming pairings																						
+											-0.15 <= D-score <= 0.15 "little to no" preference
+											D-score > 0.15 => "a slight" preference for hypothesis-conforming pairings
+											D-score > 0.35 => "a moderate" preference for hypothesis-conforming pairings
+											D-score >= 0.65 => "a strong" preference for hypothesis-conforming pairings
+
+percentcorrect:      			the overall percent correct score of initial responses in test trials of D-score qualifying latencies
+
+propRT300:						the proportion of response latencies < 300ms
+
+excludeCriteriaMet:				1 = yes, exclusion supported per Greenwald et al (2003, p.214, Table 4):
+								More than 10% of all response latencies are faster than 300ms
+								0 = otherwise
