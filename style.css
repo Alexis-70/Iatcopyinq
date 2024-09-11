@@ -1,0 +1,14 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#instruction {
+    margin-top: 50px;
+}
+
+#experiment {
+    margin-top: 50px;
+    font-size: 24px;
+    font-weight: bold;
+}
