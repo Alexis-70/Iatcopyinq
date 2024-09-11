@@ -15,11 +15,18 @@ const blockConfig = {
 
 let currentBlock = 0;
 let currentTrial = 0;
-let currentStimulusIndex = 0;
 let startTime = null;
 let responses = [];
 let stimuli = [];
 let isPractice = true;
+
+// Mischia gli elementi di un array
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
 
 // Genera stimoli casuali per il test
 function generateStimuli() {
@@ -32,14 +39,6 @@ function generateStimuli() {
         });
     });
     shuffleArray(stimuli);
-}
-
-// Mischia gli elementi di un array
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
 }
 
 // Mostra le istruzioni iniziali
@@ -61,7 +60,7 @@ function startTest() {
 
 // Mostra lo stimolo attuale
 function showStimulus() {
-    if (currentTrial < blockConfig.trialsPerBlock) {
+    if (currentTrial < (isPractice ? blockConfig.trialsPerBlock : blockConfig.testTrialsPerBlock)) {
         let stimulus = stimuli[currentTrial % stimuli.length];
         document.getElementById("stimulus").textContent = stimulus.text;
         startTime = Date.now();
@@ -142,4 +141,12 @@ document.addEventListener("keydown", function(event) {
     }
 });
 
+// Avvia il test quando l'utente preme un tasto
+document.addEventListener("keydown", function(event) {
+    if (!document.getElementById("experiment").style.display) {
+        startTest();
+    }
+});
+
+// Mostra le istruzioni iniziali
 showInstructions();
